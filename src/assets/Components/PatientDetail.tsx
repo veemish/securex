@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { fetchPatientById } from "../../api/patients";
 import type { PatientDemographics } from "../../types/patient";
-
+/*Adding Editing state */
+//import { updatePatient } from "../../api/patients";
 
 type PatientDetailProps = {
   registrationId: number | string;
@@ -32,6 +33,14 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
   const {id} = useParams();
   console.log(id);
 
+  /*editingstate */
+
+//const [editing, setEditing] = useState(false);
+//const [patientName, setPatientName] = useState("");
+//const [gender, setGender] = useState<"Female" | "Male">("Male");
+//const [saving, setSaving] = useState(false);
+
+
   useEffect(() => {
     const uid = Number(id);
 
@@ -45,13 +54,16 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
       try {
         setLoading(true);
         setError("");
-
+        
         const data = await fetchPatientById(uid);
 
         if (!data) {
           setError("Patient not found.");
           return;
         }
+        setPatient(data);
+        //setPatientName(data.patientName);
+        //setGender(data.gender as "Female" | "Male");
 
         setPatient(data);
       } catch (err) {
@@ -95,7 +107,7 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
         <Link to="/">← Back to patients</Link>
       </p>
 
-      <h2>{patient.patientName}</h2>
+      <h2> Patient_Name: {patient.patientName}</h2>
       <p>Registration ID: {patient.registrationId}</p>
 
       <table border={1} cellPadding={8} cellSpacing={0} className="patient_table" >
@@ -132,6 +144,43 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
     </div>
   );
 }
+
+
+/*Save function */
+/** 
+ * async function handleSave() {
+  if (!patient) return;
+
+  try {
+    setSaving(true);
+    setError("");
+
+    const updatedPatient = await updatePatient(
+      Number(patient.registrationId),
+      patientName,
+      gender
+    );
+
+    setPatient(updatedPatient);
+    setEditing(false);
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      setError(
+        err.response
+          ? `Server error: ${err.response.status}`
+          : `Request failed: ${err.message}`
+      );
+    } else {
+      setError("Failed to update patient details.");
+    }
+  } finally {
+    setSaving(false);
+  }
+}
+*/
+
+
+
 
 export default PatientDetail;
 

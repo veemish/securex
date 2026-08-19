@@ -1,5 +1,5 @@
 body {
-  margin: 20px 430px;
+  margin: 80px 430px;
   padding: auto;
   font-family: system-ui, sans-serif;
   overflow-y: scroll;
@@ -13,6 +13,9 @@ body {
   
 }
 
+/*body h2 .patienttableheader{
+  color: aquamarine;
+}*/
 .table-screen {
   min-height: 100vh;
   display: flex;

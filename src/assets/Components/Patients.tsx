@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { fetchPatients } from "../../api/patients";
 import type { PatientSummary } from "../../types/patient";
+import type { PatientDemographics } from "../../types/patient";
 
 function Patients() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ function Patients() {
 
   return (
     <div>
-      <h2>Patients</h2>
+      <h2 className="patienttableheader">Patients</h2>
 
       {patients.length === 0 ? (
         <p>No patients found.</p>
@@ -89,5 +90,23 @@ function Patients() {
     </div>
   );
 }
+
+/*updating API function */
+
+const patientUrl =  "http://41.188.172.204:3033/test/patient-registration";
+
+export async function updatePatient( 
+   registrationId: number,  
+  patientName: string,  
+  gender: "Female" | "Male"): Promise<PatientDemographics>
+   {  const response = await axios.put<PatientDemographics>
+    (  `${patientUrl}/${registrationId}`,    
+    {  Patient_Name: patientName, 
+       Gender: gender,  
+     } 
+    );
+  return response.data;
+}
+
 
 export default Patients;
