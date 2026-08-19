@@ -5,6 +5,7 @@ import axios from "axios";
 import { fetchPatientById } from "../../api/patients";
 import type { PatientDemographics } from "../../types/patient";
 
+
 type PatientDetailProps = {
   registrationId: number | string;
 };
@@ -17,6 +18,11 @@ function DetailRow({ label, value }: { label: string; value?: string | number })
     </tr>
   );
 }
+
+/**(alias) useState<boolean>(initialState: boolean | (() => boolean)): [boolean, (value: React.SetStateAction<boolean>) => void] (+1 overload)
+import useState
+
+Returns a stateful value, and a function to update it. @version — 16.8.0@see — https://react.dev/reference/react/useState */
 
 function PatientDetail({ registrationId }: PatientDetailProps) {
   const [patient, setPatient] = useState<PatientDemographics | null>(null);
@@ -84,7 +90,7 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
   }
 
   return (
-    <div>
+    <div className="table_screen">
       <p>
         <Link to="/">← Back to patients</Link>
       </p>
@@ -92,8 +98,8 @@ function PatientDetail({ registrationId }: PatientDetailProps) {
       <h2>{patient.patientName}</h2>
       <p>Registration ID: {patient.registrationId}</p>
 
-      <table border={1} cellPadding={8} cellSpacing={0}>
-        <tbody>
+      <table border={1} cellPadding={8} cellSpacing={0} className="patient_table" >
+        <tbody >
           <DetailRow label="Title" value={patient.title} />
           <DetailRow label="Gender" value={patient.gender} />
           <DetailRow label="Date of Birth" value={patient.dateOfBirth} />

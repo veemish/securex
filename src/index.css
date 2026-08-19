@@ -1,4 +1,64 @@
 body {
-  margin: 0;
+  margin: 20px 430px;
+  padding: auto;
   font-family: system-ui, sans-serif;
+  overflow-y: scroll;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  background-color: aliceblue;
+  
 }
+
+.table-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.patient-table {
+  border-collapse: collapse;
+  width: min(90%, 800px);
+  text-align: center;
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 12px;
+  border: 1px solid #913434;
+  text-align: center;
+}
+
+
+/*
+
+.tablecontainer{
+  margin: auto;
+}
+
+.patient-table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 12px;
+  border: 1px solid #41099b;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.patient-table th {
+  background-color: #640a0a;
+  font-weight: bold;
+}
+*/
